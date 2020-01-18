@@ -143,17 +143,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="quick-view-list nav" role="tablist">
-                                    <a class="active" href="#modal1" data-toggle="tab" role="tab" aria-selected="true" aria-controls="home1">
-                                        <img id="sm_gambar1" src="#" title="#" alt="#" height="112" width="100">
-                                    </a>
-                                    <a href="#modal2" data-toggle="tab" role="tab" aria-selected="false" aria-controls="home2">
-                                        <img src="<?php echo base_url('dist/assets/img/quick-view/s2.jpg') ?>" alt="">
-                                    </a>
-                                    <a href="#modal3" data-toggle="tab" role="tab" aria-selected="false" aria-controls="home3">
-                                        <img src="<?php echo base_url('dist/assets/img/quick-view/s3.jpg') ?>" alt="">
-                                    </a>
-                                </div>
                             </div>
                             <div class="qwick-view-right">
                                 <div class="qwick-view-content">
