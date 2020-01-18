@@ -19,15 +19,18 @@
                                 <span><?php echo $dt->qty ?> x <?php echo "Rp" . number_format("$dt->harga",0, '', '.') ?></span>
                             </div>
                             <div class="cart-delete">
-                                <a href="#"><i class="ion-ios-trash-outline"></i></a>
+                                <a href="#" id="hapus_cart" data-id="<?php echo $dt->id_cart ?>" class="hapus_cart"><i class="ion-ios-trash-outline"></i></a>
+                            </div>
+                        </li>
+                        <input type="hidden" name="sub_total" id="sub_total">
+                        <?php endforeach; ?>
+                        <?php foreach($subtot as $sub): ?>
+                        <li class="single-product-cart">
+                            <div class="cart-total">
+                                <h4>Total : <span><?php echo "Rp" . number_format("$sub->total",0, '', '.') ?></span></h4>
                             </div>
                         </li>
                         <?php endforeach; ?>
-                        <li class="single-product-cart">
-                            <div class="cart-total">
-                                <h4>Total : <span>$ 120</span></h4>
-                            </div>
-                        </li>
                         <li class="single-product-cart">
                             <div class="cart-checkout-btn">
                                 <a class="btn-hover cart-btn-style" href="<?php echo site_url('cart') ?>">view cart</a>
@@ -111,7 +114,7 @@
                                     <span><?php echo $menu->kategori ?></span>
                                 </div>
                                 <div class="product-categori">
-                                    <a href="#"><i class="ion-bag"></i> Add to cart</a>
+                                    <a href="#" data-toggle="modal" class="view_menu" data="<?php echo $menu->id_menu ?>"><i class="ion-bag"></i> Add to cart</a>
                                 </div>
                             </div>
                         </div>
@@ -166,17 +169,17 @@
                                             <i class="ion-android-star-outline"></i>
                                             <i class="ion-android-star-outline"></i>
                                         </div>
-                                        <div class="quick-view-number">
-                                            <span>2 Ratting (S)</span>
-                                        </div>
                                     </div>
                                     <p id="deskripsi"></p>
                                     <div class="quickview-plus-minus">
                                         <div class="cart-plus-minus">
-                                            <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
+                                            <input type="text" value="1" oninput="subTotal()" onvolumechange="subTotal()" name="qty_cart" id="qty_cart" class="cart-plus-minus-box">
                                         </div>
+                                        <input type="hidden" name="id_menu_cart" id="id_menu_cart">
+                                        <input type="hidden" name="harga_cart" id="harga_cart">
+                                        <input type="hidden" name="subtot" id="subtot">
                                         <div class="quickview-btn-cart">
-                                            <a class="btn-hover-black" href="#">add to cart</a>
+                                            <a class="btn-hover-black" id="tambah_keranjang" href="#">add to cart</a>
                                         </div>
                                         <div class="quickview-btn-wishlist">
                                             <a class="btn-hover" href="#"><i class="ion-ios-heart-outline"></i></a>
@@ -212,16 +215,71 @@ function rubah(angka){
                 dataType : "JSON",
                 data : {id:id},
                 success: function(data){
-                    $.each(data,function(id_menu, nama_menu, harga_menu){
+                    $.each(data,function(id_menu, nama_menu, harga){
                         $('#exampleModal').modal('show');
+                        $('#id_menu_cart').val(data.id_menu);
+                        $('#harga_cart').val(data.harga);
                         $('#nama_menu').html(data.nama_menu);
                         $('#harga').html("Rp"+rubah(data.harga));
                         $('#deskripsi').html(data.deskripsi);
                         $("#gambar1, #sm_gambar1").attr("src","<?php echo base_url('upload/menu/') ?>" + data.foto);
                         $("#gambar1, #sm_gambar1").attr("title",data.nama_menu);
+                        subTotal();
                     });
                 }
             });
             return false;
+        });
+        // Insert Cart
+        $('#tambah_keranjang').on('click',function(){
+                var id_menu=$('#id_menu_cart').val();
+                var qty=$('#qty_cart').val();
+                var harga=$('#harga_cart').val();
+                var sub_total=$('#subtot').val();
+                $.ajax({
+                    type : "POST",
+                    url  : "<?php echo base_url('index.php/front/tambah_keranjang')?>",
+                    dataType : "JSON",
+                    data : {id_menu:id_menu , qty:qty, harga:harga, sub_total:sub_total},
+                    success: function(data){
+                        $('[name="id_menu_cart"]').val("");
+                        $('[name="qty_cart"]').val("1");
+                        $('[name="harga_cart"]').val("");
+                        $('[name="subtot"]').val("");
+                        $('#exampleModal').modal('hide');
+                        function timedRefresh(timeoutPeriod) {
+                            setTimeout("location.reload(true);",timeoutPeriod);
+                        }
+                        window.onload = timedRefresh(100);
+                    }
+                });
+                return false;
+            });
+            function subTotal(){
+                let num1 = document.getElementById("qty_cart").value;
+                let num2 = document.getElementById("harga_cart").value;
+                let sum = Number(num1) * Number(num2);
+                document.getElementById("subtot").value = sum;
+            }
+            $('.qtybutton').on('click', function() {
+                subTotal();
+        
+            });
+        //Hapus Keranjang
+        $('.hapus_cart').on('click',function(){
+            var id_cart=$(this).attr('data-id');
+                $.ajax({
+                    type : "POST",
+                    url  : "<?php echo base_url('index.php/front/hapus_keranjang')?>",
+                    dataType : "JSON",
+                    data : {id_cart: id_cart},
+                    success: function(data){
+                        function timedRefresh(timeoutPeriod) {
+                            setTimeout("location.reload(true);",timeoutPeriod);
+                        }
+                        window.onload = timedRefresh(100);
+                    }
+                });
+                return false;
         });
 </script>

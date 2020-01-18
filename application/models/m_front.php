@@ -34,8 +34,36 @@ class m_front extends CI_model{
     function get_all_produk(){
         return $this->db->join('menu', 'menu.id_menu = keranjang.id_menu')
 					->get('keranjang')
-					->result();
+                    ->result();
     }
+
+    function get_subtot(){
+        return $this->db->query("SELECT SUM(sub_total) AS total FROM keranjang")->result();
+    }
+
+    function hapus_keranjang($id_cart){
+        $hasil=$this->db->query("DELETE FROM keranjang WHERE id_cart='$id_cart'");
+        return $hasil;
+    }
+
+    function tambah_keranjang($id_menu,$qty,$harga,$sub_total){
+        	$hasil=$this->db->query("INSERT INTO keranjang (id_menu,qty,harga,sub_total)VALUES('$id_menu','$qty','$harga','$sub_total')");
+        	return $hasil;
+        }
+
+    function get_keranjang(){
+            $hsl=$this->db->query("SELECT * FROM keranjang");
+            if($hsl->num_rows()>0){
+                foreach ($hsl->result() as $data) {
+                    $hasil=array(
+                        'id_menu' => $data->id_menu,
+                        'qty' => $data->qty,
+                        'harga' => $data->harga,
+                        );
+                }
+            }
+            return $hasil;
+        }
 
     function get_menu_by_id($id_menu){
         $hsl=$this->db->query("SELECT * FROM menu WHERE id_menu='$id_menu'");

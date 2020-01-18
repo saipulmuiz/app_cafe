@@ -22,11 +22,13 @@
                                     </div>
                                 </li>
                                 <?php endforeach; ?>
+                                <?php foreach($subtot as $sub): ?>
                                 <li class="single-product-cart">
                                     <div class="cart-total">
-                                        <h4>Total : <span>$ 120</span></h4>
+                                        <h4>Total : <span><?php echo "Rp" . number_format("$sub->total",0, '', '.') ?></span></h4>
                                     </div>
                                 </li>
+                                <?php endforeach; ?>
                                 <li class="single-product-cart">
                                     <div class="cart-checkout-btn">
                                         <a class="btn-hover cart-btn-style" href="<?php echo site_url('cart') ?>">view cart</a>

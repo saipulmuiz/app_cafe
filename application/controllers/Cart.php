@@ -8,16 +8,17 @@ class Cart extends CI_Controller{
     }
  
     function index(){
+        $data['subtot']=$this->m_cart->get_subtot();
         $data['data']=$this->m_cart->get_all_produk();
         $this->load->view('front/cart',$data);
     }
  
     function add_to_cart(){ //fungsi Add To Cart
         $data = array(
-            'id' => $this->input->post('produk_id'), 
-            'name' => $this->input->post('produk_nama'), 
-            'price' => $this->input->post('produk_harga'), 
-            'qty' => $this->input->post('quantity'), 
+            'id_menu' => $this->input->post('id_menu'), 
+            'qty' => $this->input->post('produk_nama'), 
+            'harga' => $this->input->post('harga'), 
+            'sub_total' => $this->input->post('sub_total'), 
         );
         $this->cart->insert($data);
         echo $this->show_cart(); //tampilkan cart setelah added

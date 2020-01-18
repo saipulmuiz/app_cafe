@@ -1,5 +1,5 @@
 <?php
-class m_cart extends CI_Model{
+class m_checkout extends CI_Model{
  
     function get_all_produk(){
         
