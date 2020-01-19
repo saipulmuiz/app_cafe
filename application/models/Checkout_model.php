@@ -1,5 +1,5 @@
 <?php
-class m_checkout extends CI_Model{
+class Checkout_model extends CI_Model{
     private $_table = "transaksi_head";
     private $_table_det = "transaksi_det";
    // id_menu	nama_menu	kategori	harga	foto	deskripsi	created_at	update_At
@@ -20,19 +20,17 @@ class m_checkout extends CI_Model{
         return $this->db->query("SELECT SUM(sub_total) AS total FROM keranjang")->result();
     }
 
-    public function save(){
-        $post = $this->input->post();
-        $this->id_transaksi = uniqid("TR-");
-        $this->nama_pemesan= $post["nama_pemesan"];
-        $this->email= $post["email"];
-        $this->no_hp= $post["no_hp"];
-        $this->status_pemesanan= "Diproses";
-        $this->db->insert($this->_table, $this);
+    public function save($data=array()){
+        $this->db->insert($this->_table, $data);
     }
 
-    public function save_detail()
+    public function save_detail($data=array())
     {
+        return $this->db->insert($this->_table_det,$data);
+    }
 
+    public function DelCart(){
+        return $this->db->query('delete from keranjang');
     }
      
 }

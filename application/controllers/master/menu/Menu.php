@@ -6,15 +6,15 @@
     public function __construct(){
       parent::__construct();
      
-     $this->load->model("m_menu");
+     $this->load->model("Menu_model");
    
   }
 
     public function index(){
      
-      $model = $this->m_menu;
+      $model = $this->Menu_model;
      
-      $data["menu"] = $this->m_menu->getAll();
+      $data["menu"] = $this->Menu_model->getAll();
       $this->load->view("master/menu/list",$data);
        }
 
@@ -22,31 +22,31 @@
        
 
         if(!isset($id)) redirect('master/menu/menu');
-        $model = $this->m_menu;
+        $model = $this->Menu_model;
        
        
         if ($this->input->post('nama')) {
           $this->session->set_flashdata('succes', 'Data Berhasil Disimpan');
-          $hm =  $this->m_menu->edit();
-          $data["kode"] = $this->m_menu->getkode();
+          $hm =  $this->Menu_model->edit();
+          $data["kode"] = $this->Menu_model->getkode();
           redirect(site_url('master/menu/menu'));
          }else {
-          $data["data"] = $this->m_menu->getbyid($id);
+          $data["data"] = $this->Menu_model->getbyid($id);
           $this->load->view("master/menu/edit",$data);
          }
     }
     public function tambah(){
      
-        $model = $this->m_menu;
+        $model = $this->Menu_model;
        
        
         if ($this->input->post('nama')) {
           $this->session->set_flashdata('succes', 'Data Berhasil Disimpan');
-          $hm =  $this->m_menu->save();
-          $data["kode"] = $this->m_menu->getkode();
+          $hm =  $this->Menu_model->save();
+          $data["kode"] = $this->Menu_model->getkode();
           redirect(site_url('master/menu/menu'));
          }else {
-          $data["kode"] = $this->m_menu->getkode();
+          $data["kode"] = $this->Menu_model->getkode();
           $this->load->view("master/menu/add",$data);
          }
       }
@@ -54,7 +54,7 @@
   public function delete($id){
     
     if(!isset($id)) show_404();
-    if($this->m_menu->delete($id)){
+    if($this->Menu_model->delete($id)){
         redirect(site_url('master/menu/menu'));
     }
    }

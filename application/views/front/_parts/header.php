@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Jeda Coffe - Drinks And Food</title>
+        <title>Jeda Coffe - Coffe & Eatery</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Favicon -->
@@ -33,25 +33,27 @@
                             <div class="col-lg-6 col-md-6 col-6">
                                 <div class="logo">
                                     <a href="<?php echo site_url() ?>">
-                                        <h1>SMShop</h1>
+                                        <h1>Jeda Coffe - Coffe & Eatery</h1>
                                         <!-- <img src="assets/img/logo/logo.png" alt="" /> -->
                                     </a>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-6">
                                 <div class="header-search-cart">
-                                    <div class="header-search common-style">
+                                    <!-- <div class="header-search common-style">
                                         <button class="sidebar-trigger-search">
                                             <span class="ion-ios-search-strong"></span>
                                         </button>
-                                    </div>
+                                    </div> -->
                                     <div class="header-cart common-style">
                                         <button class="sidebar-trigger">
-                                            <span class="ion-bag"></span>
+                                            <span class="ion-bag">
+                                                <?php echo $qty[0]["jumlah"];?>        
+                                            </span>
                                         </button>
                                     </div>
                                     <div class="header-sidebar common-style">
-                                        <button class="header-navbar-active">
+                                        <button class="clickable-mainmenu-active">
                                             <span class="ion-navicon"></span>
                                         </button>
                                     </div>

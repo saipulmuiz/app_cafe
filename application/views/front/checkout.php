@@ -80,17 +80,7 @@
                     </div>
                 </div>
             </div>
-            <div class="breadcrumb-area pt-205 pb-210" style="background-image: url(<?php echo base_url('dist/assets/img/bg/breadcrumb.jpg') ?>)">
-                <div class="container">
-                    <div class="breadcrumb-content">
-                        <h2>checkout</h2>
-                        <ul>
-                            <li><a href="#">home</a></li>
-                            <li> checkout </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            
             <?php if ($this->session->flashdata('success')): ?>
             <div class="alert alert-success" role="alert">
                 <?php echo $this->session->flashdata('success'); ?>
@@ -134,6 +124,7 @@
                                         <thead>
                                             <tr>
                                                 <th class="product-name">Nama Menu</th>
+                                                <th>Harga</th>
                                                 <th class="product-total">Sub Total</th>
                                             </tr>							
                                         </thead>
@@ -143,6 +134,7 @@
                                                 <td class="product-name">
                                                     <?php echo $dt->nama_menu ?> <strong class="product-quantity"> × <?php echo $dt->qty ?></strong>
                                                 </td>
+                                                <td><span class="amount"><?php echo "Rp" . number_format("$dt->harga",0, '', '.') ?></span></td>
                                                 <td class="product-total">
                                                     <span class="amount"><?php echo "Rp" . number_format("$dt->sub_total",0, '', '.') ?></span>
                                                 </td>
@@ -153,7 +145,7 @@
                                         <?php foreach($subtot as $sub): ?>
                                             <tr class="order-total">
                                                 <th>Total Harga</th>
-                                                <td><strong><span class="amount"><?php echo "Rp" . number_format("$sub->total",0, '', '.') ?></span></strong>
+                                                <td colspan="2"><strong><span class="amount"><?php echo "Rp" . number_format("$sub->total",0, '', '.') ?></span></strong>
                                                 </td>
                                             </tr>	
                                         <?php endforeach; ?>							

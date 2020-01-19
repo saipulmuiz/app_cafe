@@ -68,7 +68,7 @@ to get the desired effect
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Deskripsi</label>
-                    <input type="text" name="deskripsi" value="<?php echo $data->deskripsi?>" class="form-control" required >
+                    <textarea name="deskripsi" class="form-control" required ><?php echo $data->deskripsi?></textarea>
                     <input type="hidden" name="oldimage" value="<?php echo $data->foto?>">
                     <input type="hidden" name="tgl" value="<?php echo $data->created_at?>" readonly class="form-control" required>
                   </div>

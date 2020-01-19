@@ -1,6 +1,6 @@
 <?php defined ('BASEPATH') OR exit(' No Direct Script access allowed');
 
-class m_front extends CI_model{
+class Front_model extends CI_model{
     private $_table = "menu";
    // id_menu	nama_menu	kategori	harga	foto	deskripsi	created_at	update_At
     public $id_menu;
@@ -31,6 +31,14 @@ class m_front extends CI_model{
         return $this->db->get_where($this->_table,["id_menu" => $id])->row();
     }
 
+    public function getCart()
+    {
+        return $this->db->query("SELECT * FROM keranjang INNER JOIN menu ON menu.id_menu=keranjang.id_menu")->result_array();
+    }
+    public function CountCart()
+    {
+        return $this->db->query("SELECT count(keranjang.id_menu) as jumlah FROM keranjang")->result_array();
+    }
     function get_all_produk(){
         return $this->db->join('menu', 'menu.id_menu = keranjang.id_menu')
 					->get('keranjang')

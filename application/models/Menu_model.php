@@ -1,6 +1,6 @@
 <?php defined ('BASEPATH') OR exit(' No Direct Script access allowed');
 
-class m_menu extends CI_model{
+class Menu_model extends CI_model{
     private $_table = "menu";
    // id_menu	nama_menu	kategori	harga	foto	deskripsi	created_at	update_At
     public $id_menu;

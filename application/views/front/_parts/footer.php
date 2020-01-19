@@ -20,7 +20,7 @@
                                     <div class="footer-logo">
                                         <a href="#">
                                             <!-- <img src="assets/img/logo/logo.png" alt=""> -->
-                                            <h1>SMShop</h1>
+                                            <h1>Jeda Coffee</h1>
                                         </a>
                                     </div>
                                     <div class="footer-nav">
@@ -41,9 +41,9 @@
                             <div class="footer-widget f-right">
                                 <div class="footer-widget-r-content">
                                     <ul>
-                                        <li><span>Phone :</span> +62 842 42742</li>
-                                        <li><span>Email : </span> <a href="#">saipulmuiz87@gmail.com</a></li>
-                                        <li><span>Address :</span> Indihiang Tasikmalaya</li>
+                                        <li><span>Phone :</span> 0853-5322-2649</li>
+                                        <li><span>Open : </span> 12.00 PM</li>
+                                        <li><span>Address :</span> Jl. Letjen Ibrahim Adjie No.7A, Indihiang, Kec. Indihiang, Tasikmalaya, Jawa Barat 46151</li>
                                     </ul>
                                 </div>
                             </div>
@@ -52,9 +52,7 @@
                 </div>
             </footer>
             <!-- modal -->
-            <div class="clickable-mainmenu-btn">
-                <a class="clickable-mainmenu-active" href="#"><i class="ion-navicon"></i></a>
-            </div>
+            
             <div class="clickable-mainmenu text-center">
                 <div class="clickable-mainmenu-icon">
                     <button class="clickable-mainmenu-close">
@@ -72,5 +70,128 @@
             </div>
         </div>
         <?php include "javascript.php" ?>
+        <script type="text/javascript">
+            $(document).ready(function(){       
+
+            // Start Get Cart
+            function cart(){
+                const $cart = $("#daftar-belanja");
+                var $listCart='';
+                $.ajax({
+                    url:'<?php echo base_url('front/cart');?>',
+                    dataType:'json',
+                    type:'GET',
+                    success:function(data){
+                        for(var row=0;row<data.length;row++){
+                            $listCart+='<li class="single-product-cart"><div class="cart-img"><a href="#"><img src="<?php echo base_url('upload/menu/')?>'+data[row].foto+'" width="90" alt=""></a></div><div class="cart-title"><h3><a href="#">'+data[row].nama_menu+'</a></h3><span>'+data[row].qty+' x Rp '+data[row].harga+'</span></div><div class="cart-delete"><a href="#"class="hapus_cart" data-id="'+data[row].id_cart+'"><i class="ion-ios-trash-outline"></i></a></div></li><input type="hidden" name="sub_total" id="sub_total">';
+                        }$cart.html($listCart+'<li class="single-product-cart"><div class="cart-checkout-btn"><a class="no-mrg btn-hover cart-btn-style" href="<?php echo site_url('checkout') ?>">Bayar Pesanan</a></div></li>');
+                        function timedRefresh(timeoutPeriod) {
+                            setTimeout("location.reload(true);",timeoutPeriod);
+                        }
+                        window.onload = timedRefresh(700);
+                    }
+                });
+            }
+            // End Get Cart
+
+
+            function rubah(angka){
+                var reverse = angka.toString().split('').reverse().join(''),
+               ribuan = reverse.match(/\d{1,3}/g);
+               ribuan = ribuan.join('.').split('').reverse().join('');
+               return ribuan;
+             }
+             $('.view_menu').on('click',function(){
+                    var id=$(this).attr('data');
+                    $.ajax({
+                        type : "GET",
+                        url  : "<?php echo base_url('index.php/front/view_menu')?>",
+                        dataType : "JSON",
+                        data : {id:id},
+                        success: function(data){
+                            $.each(data,function(id_menu, nama_menu, harga){
+                                $('#exampleModal').modal('show');
+                                $('#id_menu_cart').val(data.id_menu);
+                                $('#harga_cart').val(data.harga);
+                                $('#nama_menu').html(data.nama_menu);
+                                $('#harga').html("Rp"+rubah(data.harga));
+                                $('#deskripsi').html(data.deskripsi);
+                                $("#gambar1, #sm_gambar1").attr("src","<?php echo base_url('upload/menu/') ?>" + data.foto);
+                                $("#gambar1, #sm_gambar1").attr("title",data.nama_menu);
+                                subTotal();
+                            });
+                        }
+                    });
+                    return false;
+                });
+                // Insert Cart
+                $('#tambah_keranjang').on('click',function(){
+                    var id_menu=$('#id_menu_cart').val();
+                    var qty=$('#qty_cart').val();
+                    var harga=$('#harga_cart').val();
+                    var sub_total=$('#subtot').val();
+                    $.ajax({
+                        type : "POST",
+                        url  : "<?php echo base_url('index.php/front/tambah_keranjang')?>",
+                        dataType : "JSON",
+                        data : {id_menu:id_menu , qty:qty, harga:harga, sub_total:sub_total},
+                        success: function(data){
+                            $('[name="id_menu_cart"]').val("");
+                            $('[name="qty_cart"]').val("1");
+                            $('[name="harga_cart"]').val("");
+                            $('[name="subtot"]').val("");
+                            $('#exampleModal').modal('hide');
+                            $('#status').html("<h3>Ini daftar belanjaan mu</h3>");
+                            cart();
+                            $('.sidebar-cart').addClass('inside');
+                            $('.wrapper').addClass('overlay-active');
+                        
+                        }
+                    });
+                
+            });
+                function subTotal(){
+                    let num1 = document.getElementById("qty_cart").value;
+                    let num2 = document.getElementById("harga_cart").value;
+                    let sum = Number(num1) * Number(num2);
+                    $("#subtot").val(sum);
+                }
+
+                $('.qtybutton').on('click', function() {
+                    subTotal();
+                });
+
+               $('a.hapus_cart').on('click',function(){
+                var id_cart=$(this).attr('data-id');
+                    $.ajax({
+                        type : "POST",
+                        url  : "<?php echo base_url('index.php/front/hapus_keranjang')?>",
+                        dataType : "JSON",
+                        data : {id_cart: id_cart},
+                        success: function(data){
+                            cart();
+                        }
+                    });
+                });
+
+               const $hapus = $('a.hapus_cart');
+
+               $hapus.click(function(){
+                var id_cart=$(this).attr('data-id');
+                $.ajax({
+                    type : "POST",
+                    url  : "<?php echo base_url('index.php/front/hapus_keranjang')?>",
+                    dataType : "JSON",
+                    data : {id_cart: id_cart},
+                    success: function(data){
+                       cart();
+                    }
+                });
+                
+               })
+
+
+    });
+</script>
     </body>
 </html>

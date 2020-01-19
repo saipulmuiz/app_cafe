@@ -1,6 +1,6 @@
 <?php defined ('BASEPATH') OR exit(' No Direct Script access allowed');
 
-class m_user extends CI_model{
+class User_model extends CI_model{
     private $_table = "user";
    // id_user	nama_user	username	password	level	created_at	update_at
     public $id_user;
