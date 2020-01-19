@@ -15,5 +15,14 @@ class Checkout extends CI_Controller {
 		$this->load->view('front/checkout',$data);
 	}
 
+	public function tambah_pesanan()
+	{
+        if ($this->input->post('nama_pemesan')) {
+			$this->m_checkout->save();
+			$this->session->set_flashdata('success', 'Data Berhasil Disimpan');
+			redirect(site_url('checkout'));
+		   }
+	}
+
 
 }

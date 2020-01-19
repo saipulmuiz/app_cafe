@@ -2561,20 +2561,20 @@ input.cart-plus-minus-box {
   padding: 0 145px;
 }
 .breadcrumb-content h2 {
-  color: #585858;
+  color: #ffffff;
   font-size: 40px;
   font-weight: bold;
   margin-bottom: 16px;
   text-transform: capitalize;
 }
 .breadcrumb-content li {
-  color: #585858;
+  color: #ffffff;
   display: inline-block;
   font-weight: 600;
   text-transform: uppercase;
 }
 .breadcrumb-content li a {
-  color: #7c7c7c;
+  color: #ffffff;
   position: relative;
   padding-right: 18px;
 }

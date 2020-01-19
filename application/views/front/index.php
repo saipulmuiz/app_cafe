@@ -33,8 +33,8 @@
                         <?php endforeach; ?>
                         <li class="single-product-cart">
                             <div class="cart-checkout-btn">
-                                <a class="btn-hover cart-btn-style" href="<?php echo site_url('cart') ?>">view cart</a>
-                                <a class="no-mrg btn-hover cart-btn-style" href="<?php echo site_url('checkout') ?>">checkout</a>
+                                <!-- <a class="btn-hover cart-btn-style" href="<?php echo site_url('cart') ?>">view cart</a> -->
+                                <a class="no-mrg btn-hover cart-btn-style" href="<?php echo site_url('checkout') ?>">Bayar Pesanan</a>
                             </div>
                         </li>
                     </ul>
