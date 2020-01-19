@@ -4,12 +4,12 @@ class Cart extends CI_Controller{
      
     function __construct(){
         parent::__construct();
-        $this->load->model('m_cart');
+        $this->load->model('Cart_model');
     }
  
     function index(){
-        $data['subtot']=$this->m_cart->get_subtot();
-        $data['data']=$this->m_cart->get_all_produk();
+        $data['subtot']=$this->Cart_model->get_subtot();
+        $data['data']=$this->Cart_model->get_all_produk();
         $this->load->view('front/cart',$data);
     }
  

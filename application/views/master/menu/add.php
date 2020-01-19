@@ -68,7 +68,7 @@ to get the desired effect
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Deskripsi</label>
-                    <input type="text" name="deskripsi" class="form-control" required >
+                    <textarea name="deskripsi" class="form-control" required></textarea>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Foto</label>

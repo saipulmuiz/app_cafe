@@ -6,15 +6,15 @@
     public function __construct(){
       parent::__construct();
      
-     $this->load->model("m_user");
+     $this->load->model("User_model");
    
   }
 
     public function index(){
      
-      $model = $this->m_user;
+      $model = $this->User_model;
      
-      $data["user"] = $this->m_user->getAll();
+      $data["user"] = $this->User_model->getAll();
       $this->load->view("master/user/list",$data);
        }
 
@@ -22,27 +22,27 @@
        
 
         if(!isset($id)) redirect('master/user/user');
-        $model = $this->m_user;
+        $model = $this->User_model;
        
        
         if ($this->input->post('nama_user')) {
           $this->session->set_flashdata('succes', 'Data Berhasil Disimpan');
-          $hm =  $this->m_user->edit();
+          $hm =  $this->User_model->edit();
         
           redirect(site_url('master/user/user'));
          }else {
-          $data["data"] = $this->m_user->getbyid($id);
+          $data["data"] = $this->User_model->getbyid($id);
           $this->load->view("master/user/edit",$data);
          }
     }
     public function tambah(){
      
-        $model = $this->m_user;
+        $model = $this->User_model;
        
        
         if ($this->input->post('nama_user')) {
           $this->session->set_flashdata('succes', 'Data Berhasil Disimpan');
-          $hm =  $this->m_user->save();
+          $hm =  $this->User_model->save();
          
           redirect(site_url('master/user/user'));
          }else {
@@ -54,7 +54,7 @@
   public function delete($id){
     
     if(!isset($id)) show_404();
-    if($this->m_user->delete($id)){
+    if($this->User_model->delete($id)){
         redirect(site_url('master/user/user'));
     }
    }

@@ -51,8 +51,6 @@ to get the desired effect
                   <th>Nama Menu</th>
                   <th>Kategori</th>
                   <th>Harga</th>
-                  <th>Foto</th>
-                  <th>Deskripsi</th>
                   <th>Tanggal Masuk</th>
                   <th>Tanggal Update</th>
                   <th>Aksi</th>
@@ -70,8 +68,6 @@ to get the desired effect
                   <td> <?php echo $data->nama_menu ?></td>
                   <td> <?php echo $data->kategori ?></td>
                   <td> <?php echo $data->harga ?></td>
-                  <td> <img width="70px" height="70px" src="<?php echo base_url('upload/menu/');?><?php echo $data->foto;?>" alt=""></td>
-                  <td> <?php echo $data->deskripsi ?></td>
                   <td> <?php echo $data->created_at ?></td>
                   <td> <?php echo $data->update_At ?></td>
                   <td>
@@ -90,8 +86,6 @@ to get the desired effect
                   <th>Nama Menu</th>
                   <th>Kategori</th>
                   <th>Harga</th>
-                  <th>Foto</th>
-                  <th>Deskripsi</th>
                   <th>Tanggal Masuk</th>
                   <th>Tanggal Update</th>
                   <th>Aksi</th>
