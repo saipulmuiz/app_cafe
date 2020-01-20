@@ -1,4 +1,9 @@
 <!-- Sidebar -->
+<?php
+if($this->session->userdata('status') != "login"){
+  redirect(site_url("login"));
+    }
+?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
@@ -10,10 +15,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?php echo base_url('dist/img/user2-160x160.jpg')?>" class="img-circle elevation-2" alt="User Image">
+          
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block"> Hello <?php echo $this->session->userdata('nama')?></a>
         </div>
       </div>
 
@@ -67,6 +72,13 @@
             <a href="<?php echo site_url('transaksi')?>" class="nav-link">
               <i class="fas fa-circle nav-icon"></i>
               <p>Pemesanan</p>
+            </a>
+          </li>
+          <li class="nav-header">---------</li>
+          <li class="nav-item">
+            <a href="<?php echo site_url('login/logout')?>" class="nav-link">
+              <i class="fas fa-circle nav-icon"></i>
+              <p>Logout</p>
             </a>
           </li>
           <!-- <li class="nav-header">LABELS</li>
