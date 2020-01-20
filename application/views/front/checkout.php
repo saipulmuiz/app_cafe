@@ -146,6 +146,7 @@
                                             <tr class="order-total">
                                                 <th>Total Harga</th>
                                                 <td colspan="2"><strong><span class="amount"><?php echo "Rp" . number_format("$sub->total",0, '', '.') ?></span></strong>
+                                                <input type="hidden" name="total" value="<?php echo $sub->total ?>">
                                                 </td>
                                             </tr>	
                                         <?php endforeach; ?>							

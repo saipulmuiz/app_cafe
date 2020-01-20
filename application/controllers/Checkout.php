@@ -30,6 +30,7 @@ class Checkout extends CI_Controller {
 				'email'			=> $this->input->post('email'),
 				'no_hp'			=> $this->input->post('no_hp'),
 				'status_pemesanan'	=> 'Belum Dibayar',
+				'total'			=> $this->input->post('total'),
 				'id_user' =>	'2132141'
 			));
 			foreach($carts as $cart){
@@ -37,7 +38,8 @@ class Checkout extends CI_Controller {
 					'id_transaksi' => $id,
 					'id_menu'		=> $cart->id_menu,
 					'qty'			=> $cart->qty,
-					'harga'			=> $cart->harga
+					'harga'			=> $cart->harga,
+					'sub_total'			=> $cart->sub_total
 				));
 			}
 			$checkout->DelCart();
