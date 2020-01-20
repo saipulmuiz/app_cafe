@@ -62,5 +62,14 @@ class Front extends CI_Controller {
         $data=$this->Front_model->get_menu_by_id($id_menu);
         echo json_encode($data);
     }
+
+    // public function cetak(){
+    //     $struk = $this->Front_model->view_all();
+    //     $data['struk'] = $struk;
+        
+        
+    //     $this->load->view('front/print', $data);
+        
+    // }
 }
  ?>

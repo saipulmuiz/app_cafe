@@ -77,6 +77,14 @@ class Front_model extends CI_model{
             return $this->db->query("SELECT * FROM transaksi_head ORDER BY id_transaksi DESC LIMIT 1")->row_array();
         }
 
+        // public function view_all(){
+        //     $this->db->select('*');
+        //     $this->db->from('transaksi_head'); 
+        //     $this->db->join('transaksi_det', 'transaksi_det.id_transaksi=transaksi_head.id_transaksi');
+            
+        //     return $this->db->get()->result(); // Tampilkan semua data tbl_pakan_masuk
+        //   }
+
     function get_menu_by_id($id_menu){
         $hsl=$this->db->query("SELECT * FROM menu WHERE id_menu='$id_menu'");
         if($hsl->num_rows()>0){

@@ -194,11 +194,9 @@
             </button>
         </div>
         <div class="modal-body">
-            
-            <h3><b>No Transaksi Anda : </b><?php echo $notrans["id_transaksi"] ?></h3>
+            <span><h3>Hello, <?php echo $notrans["nama_pemesan"] ?> <b>No Transaksi Anda : </b><?php echo $notrans["id_transaksi"] ?> <p>Silahkan hubungi kasir untuk membayar dengan mencantumkan ID Transaksinya..</p></h3></span>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Cetak</button>
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
         </div>
         </div>
