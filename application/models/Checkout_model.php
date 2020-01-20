@@ -20,6 +20,10 @@ class Checkout_model extends CI_Model{
         return $this->db->query("SELECT SUM(sub_total) AS total FROM keranjang")->result();
     }
 
+    function get_notrans(){
+        return $this->db->query("SELECT id_transaksi FROM transaksi_head ORDER BY id_transaksi DESC LIMIT 1")->row_array();
+    }
+
     public function save($data=array()){
         $this->db->insert($this->_table, $data);
     }

@@ -30,8 +30,7 @@ class Checkout extends CI_Controller {
 				'email'			=> $this->input->post('email'),
 				'no_hp'			=> $this->input->post('no_hp'),
 				'status_pemesanan'	=> 'Belum Dibayar',
-				'total'			=> $this->input->post('total'),
-				'id_user' =>	'2132141'
+				'total'			=> $this->input->post('total')
 			));
 			foreach($carts as $cart){
 				$checkout->save_detail(array(

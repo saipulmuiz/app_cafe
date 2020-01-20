@@ -156,7 +156,7 @@
                                 <div class="payment-method">
                                     <div class="payment-accordion">
                                         <div class="order-button-payment">
-                                                <input type="submit" value="Buatkan Pesanan">
+                                                <input type="submit" id="buat" value="Buatkan Pesanan">
                                             </form>
                                         </div>								
                                     </div>
@@ -166,5 +166,7 @@
                     </div>
                 </div>
             </div>
-            <!-- checkout-area end -->	
+            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">Small modal</button> -->
+
+            <!-- checkout-area end -->
 <?php include "_parts/footer.php" ?>

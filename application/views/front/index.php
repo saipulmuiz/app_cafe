@@ -184,9 +184,39 @@
             </div>
         </div>
     </div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">Small modal</button>
+    <div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span class="ion-android-close" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body">
+            
+            <h3><b>No Transaksi Anda : </b><?php echo $notrans["id_transaksi"] ?></h3>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Cetak</button>
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
     <style>
         .quick-view-tab-content .tab-pane > img {
             max-width: 320px;
         }
     </style>
 <?php include "_parts/footer.php" ?>
+<?php if ($this->session->flashdata('success')): ?>
+<script>
+        $(window).on('load',function(){
+            $('#modal-default').modal('show');
+        });
+</script>
+<?php endif; ?>

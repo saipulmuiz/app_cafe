@@ -73,6 +73,10 @@ class Front_model extends CI_model{
             return $hasil;
         }
 
+        function get_notrans(){
+            return $this->db->query("SELECT * FROM transaksi_head ORDER BY id_transaksi DESC LIMIT 1")->row_array();
+        }
+
     function get_menu_by_id($id_menu){
         $hsl=$this->db->query("SELECT * FROM menu WHERE id_menu='$id_menu'");
         if($hsl->num_rows()>0){

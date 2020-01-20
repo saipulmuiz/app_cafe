@@ -15,6 +15,7 @@ class Front extends CI_Controller {
         $data['subtot']=$this->Front_model->get_subtot();
         $data["menus"] = $this->Front_model->getAll();
         $data['qty']=$this->Front_model->CountCart();
+        $data['notrans']=$this->Front_model->get_notrans();
 
         if(!$data['data']){
             $data['status'] = "0";
