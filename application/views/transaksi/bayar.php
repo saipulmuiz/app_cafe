@@ -48,14 +48,14 @@ to get the desired effect
                 <h3 class="card-title"></h3>
               </div>
               
-              <form action="<?php site_url('transaksi/bayar') ?>" method="post">
+              <label id="formBayar" action="<?php site_url('transaksi/bayar') ?>" method="post">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">ID Transaksi</label>
                     <input type="text" name="id_transaksi" value="<?php echo $data->id_transaksi?>" readonly class="form-control" required>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail1">ID Transaksi</label>
+                    <label for="exampleInputEmail1">Nama Pemesan</label>
                     <input type="text" name="nama_pemesan" value="<?php echo $data->nama_pemesan?>" readonly class="form-control" required>
                   </div>
                   <div class="form-group">
@@ -129,6 +129,16 @@ to get the desired effect
         let sum = Number(num2) - Number(num1);
         document.getElementsByName("kembali")[0].value = sum;
     }
+    // function bayarPesanan(){
+    //   let num1 = document.getElementsByName("total")[0].value;
+    //   let num2 = document.getElementsByName("bayar")[0].value;
+
+    //   if(num2 < num1){
+    //     alert("Jumlah Bayar Kurang!");
+    //   }else{
+    //     $('#formBayar').submit();
+    //   }
+    // }
 </script>
 <!-- jQuery -->
 </body>

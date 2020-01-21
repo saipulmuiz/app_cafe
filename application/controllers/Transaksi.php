@@ -27,6 +27,7 @@
     
     if ($this->input->post('nama_pemesan')) {
         $this->session->set_flashdata('succes', 'Data Berhasil Disimpan');
+        $model->bayar();
         redirect(site_url('transaksi'));
         }else {
         $data["data"] = $this->Transaksi_model->getbyid($id);
@@ -38,7 +39,7 @@
     
     if(!isset($id)) show_404();
     if($this->Transaksi_model->delete($id)){
-        redirect(site_url('transaksi/transaksi'));
+        redirect(site_url('transaksi'));
     }
    }
 
