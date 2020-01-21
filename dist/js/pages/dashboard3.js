@@ -58,7 +58,7 @@ $(function () {
                 value /= 1000
                 value += 'k'
               }
-              return '$' + value
+              return value
             }
           }, ticksStyle)
         }],
@@ -76,10 +76,10 @@ $(function () {
   var $visitorsChart = $('#visitors-chart')
   var visitorsChart  = new Chart($visitorsChart, {
     data   : {
-      labels  : ['18th', '20th', '22nd', '24th', '26th', '28th', '30th'],
+      labels  : ['14 Des', '21 Des', '28 Des', '5 Jan', '12 Jan', '19 Jan'],
       datasets: [{
         type                : 'line',
-        data                : [100, 120, 170, 167, 180, 177, 160],
+        data                : [100, 120, 170, 167, 180, 177],
         backgroundColor     : 'transparent',
         borderColor         : '#007bff',
         pointBorderColor    : '#007bff',
@@ -87,18 +87,7 @@ $(function () {
         fill                : false
         // pointHoverBackgroundColor: '#007bff',
         // pointHoverBorderColor    : '#007bff'
-      },
-        {
-          type                : 'line',
-          data                : [60, 80, 70, 67, 80, 77, 100],
-          backgroundColor     : 'tansparent',
-          borderColor         : '#ced4da',
-          pointBorderColor    : '#ced4da',
-          pointBackgroundColor: '#ced4da',
-          fill                : false
-          // pointHoverBackgroundColor: '#ced4da',
-          // pointHoverBorderColor    : '#ced4da'
-        }]
+      }]
     },
     options: {
       maintainAspectRatio: false,
